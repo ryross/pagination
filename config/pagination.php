@@ -7,8 +7,9 @@ return array(
 		'current_page'   => array('source' => 'query_string', 'key' => 'page'), // source: "query_string" or "route"
 		'total_items'    => 0,
 		'items_per_page' => 10,
-		'view'           => 'pagination/basic',
+		'view'           => 'pagination/pretty',
 		'auto_hide'      => TRUE,
+		'max_pages'      => 11,
 	),
 
 );

@@ -16,6 +16,7 @@ class Kohana_Pagination {
 		'items_per_page' => 10,
 		'view'           => 'pagination/basic',
 		'auto_hide'      => TRUE,
+		'max_pages'      => 15,
 	);
 
 	// Current page number
@@ -50,6 +51,13 @@ class Kohana_Pagination {
 
 	// Query offset
 	protected $offset;
+
+
+	// First page number; FALSE if the current page is the first one
+	protected $start_page;
+
+	// Last page number; FALSE if the current page is the last one
+	protected $end_page;
 
 	/**
 	 * Creates a new Pagination object.
@@ -160,6 +168,9 @@ class Kohana_Pagination {
 			$this->first_page         = ($this->current_page === 1) ? FALSE : 1;
 			$this->last_page          = ($this->current_page >= $this->total_pages) ? FALSE : $this->total_pages;
 			$this->offset             = (int) (($this->current_page - 1) * $this->items_per_page);
+			$this->start_page         = ($this->current_page > ceil($this->config['max_pages'] / 2)) ? $this->current_page - ceil($this->config['max_pages'] / 2) + 1 : 1;
+			$this->end_page           = ($this->start_page  + $this->config['max_pages'] > $this->total_pages) ? $this->total_pages : ($this->start_page + $this->config['max_pages'] - 1);
+			
 		}
 
 		// Chainable method
