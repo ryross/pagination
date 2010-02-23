@@ -52,11 +52,10 @@ class Kohana_Pagination {
 	// Query offset
 	protected $offset;
 
-
-	// First page number; FALSE if the current page is the first one
+	// First page to be shown in links when using max_pages. 
 	protected $start_page;
 
-	// Last page number; FALSE if the current page is the last one
+	// Last page to be shown in links when using max_pages.
 	protected $end_page;
 
 	/**
